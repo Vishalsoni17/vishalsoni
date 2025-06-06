@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Vishal Soni Portfolio</title>
+    <title>Vishal Soni</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
+		<link rel="icon" type="image/png" href="images/logohead.png">
+
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
@@ -21,13 +23,17 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+
+		
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 	  
 	  
     <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Vishal</a>
+	      <a class="navbar-brand" href="index.html">
+				<img src="images/logo.png" alt="Vishal Soni" style="height: 40px;">
+			</a>
 	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -575,31 +581,30 @@
           			<span class="icon-globe"></span>
           		</div>
           		<h3 class="mb-4">Website</h3>
-	            <p><a href="#">vishalsoni.info</a></p>
+	            <p><a href="https://vishalsoni-1ki6.vercel.app/">click here</a></p>
 	          </div>
           </div>
         </div>
 
         <div class="row no-gutters block-9">
           <div class="col-md-6 order-md-last d-flex">
-            <form action="#" class="bg-light p-4 p-md-5 contact-form">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Name">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Your Email">
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Subject">
-              </div>
-              <div class="form-group">
-                <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-              </div>
-            </form>
-          
+            <form id="contact-form" class="bg-light p-4 p-md-5 contact-form">
+							<div class="form-group">
+								<input type="text" name="user_name" class="form-control" placeholder="Your Name" required>
+							</div>
+							<div class="form-group">
+								<input type="email" name="user_email" class="form-control" placeholder="Your Email" required>
+							</div>
+							<div class="form-group">
+								<input type="text" name="subject" class="form-control" placeholder="Subject">
+							</div>
+							<div class="form-group">
+								<textarea name="message" cols="30" rows="7" class="form-control" placeholder="Message" required></textarea>
+							</div>
+							<div class="form-group">
+								<input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+							</div>
+						</form>
           </div>
 
           <div class="col-md-6 d-flex">
@@ -694,6 +699,27 @@
   <script src="js/scrollax.min.js"></script>
   
   <script src="js/main.js"></script>
-    
+
+	<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+	<script type="text/javascript">
+		(function(){
+			emailjs.init("ky-X9P1CS41TjKnSf"); // Replace with your EmailJS Public Key
+		})();
+	</script>
+
+	<script>
+		document.getElementById('contact-form').addEventListener('submit', function(event) {
+			event.preventDefault();
+
+			emailjs.sendForm('service_zflei48', 'template_zn7mu0g', this)
+				.then(function() {
+					alert('Message sent successfully!');
+					document.getElementById('contact-form').reset();
+				}, function(error) {
+					alert('Failed to send message. Please try again!');
+					console.log('FAILED...', error);
+				});
+		});
+	</script>
   </body>
 </html>
