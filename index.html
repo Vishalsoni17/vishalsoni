@@ -719,10 +719,13 @@
   <script src="js/main.js"></script>
 
 	<!-- need to mode thi in  a saparet file -->
-	<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+	<!-- EmailJS SDK v4 -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 	<script type="text/javascript">
 		(function(){
-			emailjs.init("ky-X9P1CS41TjKnSf");
+			emailjs.init({
+				publicKey: "ky-X9P1CS41TjKnSf",
+			});
 		})();
 	</script>
 
@@ -730,13 +733,24 @@
 		document.getElementById('contact-form').addEventListener('submit', function(event) {
 			event.preventDefault();
 
+			// Show loading state if desired (optional)
+			const submitBtn = this.querySelector('input[type="submit"]');
+			const originalValue = submitBtn.value;
+			submitBtn.value = "Sending...";
+			submitBtn.disabled = true;
+
 			emailjs.sendForm('service_zflei48', 'template_zn7mu0g', this)
 				.then(function() {
 					alert('Message sent successfully!');
 					document.getElementById('contact-form').reset();
+					submitBtn.value = originalValue;
+					submitBtn.disabled = false;
 				}, function(error) {
-					alert('Failed to send message. Please try again!');
+					// Alert the specific error message to help debugging
+					alert('Failed to send message: ' + JSON.stringify(error));
 					console.log('FAILED...', error);
+					submitBtn.value = originalValue;
+					submitBtn.disabled = false;
 				});
 		});
 	</script>
