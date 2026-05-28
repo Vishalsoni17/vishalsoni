@@ -10757,6 +10757,7 @@ textarea.form-control {
   visibility: hidden;
   transition: opacity 0.2s ease-out, visibility 0s linear 0.2s;
   z-index: 1000;
+  pointer-events: none;
 }
 
 #ftco-loader.fullscreen {
